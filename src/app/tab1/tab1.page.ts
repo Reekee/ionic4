@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
-
+  constructor() { }
+  set() {
+    alert("Set");
+  }
+  get() {
+    alert("Get");
+  }
+  remove() {
+    alert("remove");
+  }
 }
