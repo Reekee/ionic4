@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
+import { SessionService } from '../session/session.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,8 @@ export class LoginPage implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private storage: Storage,
+    private session: SessionService
   ) { }
 
   ngOnInit() {
@@ -26,6 +30,8 @@ export class LoginPage implements OnInit {
       //alert(res);
       let data = JSON.parse(res);
       if (data.status == true) {
+        this.session.status = true;
+        this.storage.set('status', true);
         this.router.navigateByUrl("/tabs/tab1", { replaceUrl: true });
       } else {
         alert("Login ไม่ผ่าน");
