@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-tab1',
@@ -10,16 +11,22 @@ export class Tab1Page {
 
   constructor(
     public actionSheetController: ActionSheetController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private storage: Storage
   ) { }
   set() {
-    alert("Set");
+    //alert("Set");
+    this.storage.set('status', true);
   }
   get() {
-    alert("Get");
+    //alert("Get");
+    this.storage.get('status').then((val) => {
+      console.log(val);
+    });
   }
   remove() {
-    alert("remove");
+    //alert("remove");
+    this.storage.remove('status');
   }
   async showActionSheet() {
     const actionSheet = await this.actionSheetController.create({
