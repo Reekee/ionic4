@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tab1',
@@ -8,11 +9,12 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
+  data = [];
   constructor(
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
-    private storage: Storage
+    private storage: Storage,
+    private http: HttpClient
   ) { }
   set() {
     //alert("Set");
@@ -70,5 +72,12 @@ export class Tab1Page {
       }]
     });
     await alert.present();
+  }
+  getDataService() {
+    let url = "http://localhost/ionic4/get-data.php";
+    this.http.get(url, { responseType: 'text' }).subscribe((res: any) => {
+      this.data = JSON.parse(res);
+      console.log(this.data);
+    })
   }
 }

@@ -11,4 +11,9 @@
   <ion-button (click)="remove()">Remove</ion-button>
   <ion-button (click)="showActionSheet()">open Actionsheet</ion-button>
   <ion-button (click)="showAlert()">open alert</ion-button>
+  <ion-button (click)="getDataService()">get data</ion-button>
+
+  <ion-item *ngFor="let item of data">
+    {{ item }}
+  </ion-item>
 </ion-content>
