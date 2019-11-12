@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
+import { SessionService } from '../session/session.service';
 
 @Component({
   selector: 'app-tab1',
@@ -10,11 +11,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Tab1Page {
   data = [];
+  data2 = {};
   constructor(
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
     private storage: Storage,
-    private http: HttpClient
+    private http: HttpClient,
+    private session: SessionService
   ) { }
   set() {
     //alert("Set");
@@ -74,10 +77,23 @@ export class Tab1Page {
     await alert.present();
   }
   getDataService() {
-    let url = "http://localhost/ionic4/get-data.php";
+    let url = "http://10.108.35.202/ionic4/get-data.php";
     this.http.get(url, { responseType: 'text' }).subscribe((res: any) => {
       this.data = JSON.parse(res);
       console.log(this.data);
     })
+  }
+  getDataService2() {
+    let url = "http://10.108.35.202/ionic4/get-data2.php";
+    this.http.post(url, JSON.stringify({
+      data1: "สมชาย",
+      data2: "สมใจ"
+    }), { responseType: 'text' }).subscribe((res: any) => {
+      this.data2 = JSON.parse(res);
+      console.log(this.data2);
+    })
+  }
+  testService() {
+    this.session.ajax("AAAAAAAAAAAAAAAAAAAa");
   }
 }

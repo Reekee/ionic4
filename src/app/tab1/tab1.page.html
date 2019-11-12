@@ -12,8 +12,10 @@
   <ion-button (click)="showActionSheet()">open Actionsheet</ion-button>
   <ion-button (click)="showAlert()">open alert</ion-button>
   <ion-button (click)="getDataService()">get data</ion-button>
-
+  <ion-button (click)="getDataService2()">get data</ion-button>
+  <ion-button (click)="testService()">test sevice</ion-button>
   <ion-item *ngFor="let item of data">
     {{ item }}
   </ion-item>
+  <div>Fullname = {{ data2.fullname }}</div>
 </ion-content>
