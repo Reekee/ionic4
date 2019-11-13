@@ -96,4 +96,15 @@ export class Tab1Page {
   testService() {
     //this.session.ajax("AAAAAAAAAAAAAAAAAAAa");
   }
+  showAlert2() {
+    this.session.showAlert('ok');
+  }
+  showConfirm() {
+    this.session.showConfirm('Are you confirm?').then(rs => {
+      alert(rs);
+    });
+  }
+  showToast() {
+    this.session.showToast('ok 222', 5000);
+  }
 }
