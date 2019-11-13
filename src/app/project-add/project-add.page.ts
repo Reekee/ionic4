@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../session/session.service';
 
 @Component({
   selector: 'app-project-add',
@@ -7,15 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectAddPage implements OnInit {
   project: any = {};
-  constructor() { }
+  constructor(
+    private session: SessionService
+  ) { }
 
   ngOnInit() {
   }
   add() {
-
+    let url = "http://localhost/ionic/project-add.php";
+    this.project.user_id = this.session.user.user_id;
+    this.session.ajax(url, this.project, true).then((res: any) => {
+      if (res.status == true) {
+        this.session.back();
+      } else {
+        this.session.showAlert(res.message);
+      }
+    });
   }
   validate() {
-    console.log(this.project.project_name);
     if (!this.project.project_name) return true;
     if (!this.project.project_detail) return true;
     if (!this.project.project_date) return true;

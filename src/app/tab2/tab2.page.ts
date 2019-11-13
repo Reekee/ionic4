@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SessionService } from '../session/session.service';
+import { Subscription } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -8,10 +10,16 @@ import { SessionService } from '../session/session.service';
 })
 export class Tab2Page {
   data = [];
+  private subscription: Subscription;
   constructor(
+    private router: Router,
     private session: SessionService
   ) {
-    this.loadData();
+    this.subscription = this.router.events.subscribe(async (event: any) => {
+      if (event instanceof NavigationEnd && event.url === '/tabs/tab2') {
+        this.loadData();
+      }
+    });
   }
   loadData() {
     let url = "http://localhost/ionic/project-get.php";

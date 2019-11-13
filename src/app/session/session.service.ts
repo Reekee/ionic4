@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
-import { LoadingController, AlertController, ToastController } from '@ionic/angular';
+import { LoadingController, AlertController, ToastController, NavController } from '@ionic/angular';
 import { timeout } from 'rxjs/operators';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { timeout } from 'rxjs/operators';
 })
 export class SessionService {
   public status: boolean = false;   // ตัวแปรสำหรับควบคุมการล็อกอิน  false ยังไม่ล็อกอิน / true ล็อกอินแล้ว
-  public user = {};                 // ตัวแปรสำหรับเก็บข้อมูลของผู้ใช้ที่ล็อกอิน 
+  public user: any = {};                 // ตัวแปรสำหรับเก็บข้อมูลของผู้ใช้ที่ล็อกอิน 
   public api = "http://localhost/ionic/";     // ตัวแปรสำหรับชี้ที่ตั้งของ Api
   public apiTimeout: number = 5000; // ตัวแปรควบคุมเมื่อติดต่อ api ไม่ได้เกิน 5 วินาทีให้ timeout ออก
   constructor(
@@ -20,6 +20,7 @@ export class SessionService {
     private toastController: ToastController,
     private storage: Storage,
     private router: Router,
+    private nav: NavController
   ) { }
   public async ajax(url, data, isloading) {
     let loading: any;
@@ -125,5 +126,8 @@ export class SessionService {
       closeButtonText: "ปิด"
     });
     toast.present();
+  }
+  back() {
+    this.nav.pop();
   }
 }
