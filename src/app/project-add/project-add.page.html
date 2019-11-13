@@ -23,4 +23,5 @@
     <ion-label position="floating">งบประมาณ</ion-label>
     <ion-input type="number" [(ngModel)]="project.project_amount"></ion-input>
   </ion-item>
+  <ion-button (click)="add()" [disabled]="validate()">บันทึกโครงการ</ion-button>
 </ion-content>
