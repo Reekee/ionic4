@@ -94,6 +94,6 @@ export class Tab1Page {
     })
   }
   testService() {
-    this.session.ajax("AAAAAAAAAAAAAAAAAAAa");
+    //this.session.ajax("AAAAAAAAAAAAAAAAAAAa");
   }
 }
