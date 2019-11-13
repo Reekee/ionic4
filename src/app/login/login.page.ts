@@ -31,7 +31,9 @@ export class LoginPage implements OnInit {
       let data = JSON.parse(res);
       if (data.status == true) {
         this.session.status = true;
+        this.session.user = data.user;
         this.storage.set('status', true);
+        this.storage.set('user', data.user);
         this.router.navigateByUrl("/tabs/tab1", { replaceUrl: true });
       } else {
         alert("Login ไม่ผ่าน");

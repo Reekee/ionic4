@@ -18,7 +18,9 @@ export class Tab3Page {
   logout() {
     //alert("AAAAAA")
     this.session.status = false;
+    this.session.user = {};
     this.router.navigateByUrl("/login", { replaceUrl: true });
     this.storage.remove('status');
+    this.storage.remove('user');
   }
 }
