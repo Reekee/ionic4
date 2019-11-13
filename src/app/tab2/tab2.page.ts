@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SessionService } from '../session/session.service';
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  data = [];
+  constructor(
+    private session: SessionService
+  ) { }
+  loadData() {
+    let url = "http://localhost/ionic/project-get.php";
+    this.session.ajax(url, {
 
-  constructor() {}
-
+    }, true).then((res: any) => {
+      if (res.status == true) {
+        this.data = res.data;
+      } else {
+        alert(res.message);
+      }
+    });
+  }
 }

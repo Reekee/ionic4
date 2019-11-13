@@ -7,13 +7,13 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let item of data">
       <ion-thumbnail slot="start">
-        <ion-img src="https://travel.mthai.com/app/uploads/2018/04/o1ng2b5snYY63ixkiJ2-o-768x509.jpg"></ion-img>
+        <ion-img src="{{ item.project_image }}"></ion-img>
       </ion-thumbnail>
       <ion-label>
-        <h2>aaaaaa</h2>
-        <p>13/11/2562</p>
+        <h2>{{ item.project_name }}</h2>
+        <p>{{ item.project_date }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
