@@ -10,7 +10,9 @@ export class Tab2Page {
   data = [];
   constructor(
     private session: SessionService
-  ) { }
+  ) {
+    this.loadData();
+  }
   loadData() {
     let url = "http://localhost/ionic/project-get.php";
     this.session.ajax(url, {
