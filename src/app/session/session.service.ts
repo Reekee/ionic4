@@ -9,8 +9,8 @@ import { timeout } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SessionService {
-  status: boolean = false;   // ตัวแปรสำหรับควบคุมการล็อกอิน  false ยังไม่ล็อกอิน / true ล็อกอินแล้ว
-  user = {};                 // ตัวแปรสำหรับเก็บข้อมูลของผู้ใช้ที่ล็อกอิน 
+  public status: boolean = false;   // ตัวแปรสำหรับควบคุมการล็อกอิน  false ยังไม่ล็อกอิน / true ล็อกอินแล้ว
+  public user = {};                 // ตัวแปรสำหรับเก็บข้อมูลของผู้ใช้ที่ล็อกอิน 
   public api = "http://localhost/ionic/";     // ตัวแปรสำหรับชี้ที่ตั้งของ Api
   public apiTimeout: number = 5000; // ตัวแปรควบคุมเมื่อติดต่อ api ไม่ได้เกิน 5 วินาทีให้ timeout ออก
   constructor(
