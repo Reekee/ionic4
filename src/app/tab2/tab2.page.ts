@@ -25,4 +25,7 @@ export class Tab2Page {
       }
     });
   }
+  add() {
+    this.session.linkTo('/project-add', true);
+  }
 }
