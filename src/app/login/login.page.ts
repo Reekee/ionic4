@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { SessionService } from '../session/session.service';
 
 @Component({
@@ -11,7 +10,6 @@ export class LoginPage implements OnInit {
   username: string = "";
   password: string = "";
   constructor(
-    private http: HttpClient,
     private session: SessionService
   ) { }
 
@@ -19,7 +17,7 @@ export class LoginPage implements OnInit {
   }
   login() {
     let url = "http://localhost/ionic/login.php";
-    this.http.post(url, JSON.stringify({
+    /*this.http.post(url, JSON.stringify({
       username: this.username,
       password: this.password
     }), { responseType: 'text' }).subscribe((res: any) => {
@@ -35,6 +33,20 @@ export class LoginPage implements OnInit {
       } else {
         alert("Login ไม่ผ่าน");
       }
-    })
+    })*/
+    this.session.ajax(url, {
+      username: this.username,
+      password: this.password
+    }, true).then((res: any) => {
+      if (res.status == true) {
+        this.session.status = true;
+        this.session.user = res.user;
+        this.session.setStorage('status', true);
+        this.session.setStorage('user', res.user);
+        this.session.linkTo("/tabs/tab1", false);
+      } else {
+        alert("Login ไม่ผ่าน");
+      }
+    });
   }
 }
