@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage';
 import { SessionService } from '../session/session.service';
 
 @Component({
@@ -14,8 +12,6 @@ export class LoginPage implements OnInit {
   password: string = "";
   constructor(
     private http: HttpClient,
-    private router: Router,
-    private storage: Storage,
     private session: SessionService
   ) { }
 
@@ -32,9 +28,10 @@ export class LoginPage implements OnInit {
       if (data.status == true) {
         this.session.status = true;
         this.session.user = data.user;
-        this.storage.set('status', true);
-        this.storage.set('user', data.user);
-        this.router.navigateByUrl("/tabs/tab1", { replaceUrl: true });
+        this.session.setStorage('status', true);
+        this.session.setStorage('user', data.user);
+        //this.router.navigateByUrl("/tabs/tab1", { replaceUrl: true });
+        this.session.linkTo("/tabs/tab1", false);
       } else {
         alert("Login ไม่ผ่าน");
       }
