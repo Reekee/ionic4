@@ -18,6 +18,9 @@
         <h2>{{ item.project_name }}</h2>
         <p>{{ item.project_date }}</p>
       </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="del(item)">ลบ</ion-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>

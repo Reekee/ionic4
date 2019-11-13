@@ -36,4 +36,20 @@ export class Tab2Page {
   add() {
     this.session.linkTo('/project-add', true);
   }
+  del(item) {
+    this.session.showConfirm("ลบไหม?").then(rs => {
+      if (rs == true) {
+        let url = "http://localhost/ionic/project-del.php";
+        this.session.ajax(url, {
+          project_id: item.project_id
+        }, true).then((res: any) => {
+          if (res.status == true) {
+            this.loadData();
+          } else {
+            this.session.showConfirm(res.message);
+          }
+        });
+      }
+    });
+  }
 }
