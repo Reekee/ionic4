@@ -9,12 +9,14 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-
+  user = {};
   constructor(
     private session: SessionService,
     private router: Router,
     private storage: Storage,
-  ) { }
+  ) {
+    this.user = this.session.user;
+  }
   logout() {
     //alert("AAAAAA")
     this.session.status = false;

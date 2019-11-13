@@ -7,5 +7,13 @@
 </ion-header>
 
 <ion-content>
+  <div class="myitem">
+    <div>ชื่อผู้ใช้</div>
+    <div>{{ user.username }}</div>
+  </div>
+  <div class="myitem">
+    <div>ชื่อ-นามสกุล</div>
+    <div>{{ user.user_name }} {{ user.user_lname }}</div>
+  </div>
   <ion-button (click)="logout()">ออกจากระบบ</ion-button>
 </ion-content>

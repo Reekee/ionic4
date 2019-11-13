@@ -50,6 +50,18 @@ export class AppComponent {
       } else {
         this.router.navigateByUrl("/login", { replaceUrl: true });
       }
+      /*
+            let status;
+            await this.storage.get("status").then(rs => {
+              alert("AAA");
+              status = rs;
+            });
+            alert("BBB");
+      */
+
+
+
+
 
 
     });
