@@ -31,6 +31,8 @@ export class Tab2Page {
       } else {
         alert(res.message);
       }
+    }).catch(err => {
+      this.session.showAlert(err);
     });
   }
   add() {

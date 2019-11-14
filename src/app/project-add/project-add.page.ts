@@ -23,6 +23,8 @@ export class ProjectAddPage implements OnInit {
       } else {
         this.session.showAlert(res.message);
       }
+    }).catch(err => {
+      this.session.showAlert(err);
     });
   }
   validate() {

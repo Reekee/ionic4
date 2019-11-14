@@ -17,6 +17,22 @@ export class LoginPage implements OnInit {
   }
   login() {
     let url = "http://localhost/ionic/login.php";
+    this.session.ajax(url, {
+      username: this.username,
+      password: this.password
+    }, true).then((res: any) => {
+      if (res.status == true) {
+        this.session.status = true;
+        this.session.user = res.user;
+        this.session.setStorage('status', true);
+        this.session.setStorage('user', res.user);
+        this.session.linkTo("/tabs/tab1", false);
+      } else {
+        this.session.showAlert("Login ไม่ผ่าน");
+      }
+    }).catch(err => {
+      this.session.showAlert(err);
+    });
     /*this.http.post(url, JSON.stringify({
       username: this.username,
       password: this.password
@@ -34,19 +50,5 @@ export class LoginPage implements OnInit {
         alert("Login ไม่ผ่าน");
       }
     })*/
-    this.session.ajax(url, {
-      username: this.username,
-      password: this.password
-    }, true).then((res: any) => {
-      if (res.status == true) {
-        this.session.status = true;
-        this.session.user = res.user;
-        this.session.setStorage('status', true);
-        this.session.setStorage('user', res.user);
-        this.session.linkTo("/tabs/tab1", false);
-      } else {
-        alert("Login ไม่ผ่าน");
-      }
-    });
   }
 }
