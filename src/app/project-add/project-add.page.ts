@@ -15,7 +15,7 @@ export class ProjectAddPage implements OnInit {
   ngOnInit() {
   }
   add() {
-    let url = "http://localhost/ionic/project-add.php";
+    let url = this.session.api + "project-add.php";
     this.project.user_id = this.session.user.user_id;
     this.session.ajax(url, this.project, true).then((res: any) => {
       if (res.status == true) {

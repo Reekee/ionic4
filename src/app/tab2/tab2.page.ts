@@ -22,7 +22,7 @@ export class Tab2Page {
     });
   }
   loadData() {
-    let url = "http://localhost/ionic/project-get.php";
+    let url = this.session.api + "project-get.php";
     this.session.ajax(url, {
 
     }, true).then((res: any) => {
@@ -41,7 +41,7 @@ export class Tab2Page {
   del(item) {
     this.session.showConfirm("ลบไหม?").then(rs => {
       if (rs == true) {
-        let url = "http://localhost/ionic/project-del.php";
+        let url = this.session.api + "project-del.php";
         this.session.ajax(url, {
           project_id: item.project_id
         }, true).then((res: any) => {
@@ -53,5 +53,8 @@ export class Tab2Page {
         });
       }
     });
+  }
+  view(item) {
+    this.session.linkTo('/project-detail');
   }
 }

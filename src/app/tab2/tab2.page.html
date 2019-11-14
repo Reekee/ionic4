@@ -19,6 +19,7 @@
         <p>{{ item.project_date }}</p>
       </ion-label>
       <ion-buttons slot="end">
+        <ion-button (click)="view(item)">ดู</ion-button>
         <ion-button (click)="del(item)">ลบ</ion-button>
       </ion-buttons>
     </ion-item>

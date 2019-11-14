@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   login() {
-    let url = "http://localhost/ionic/login.php";
+    let url = this.session.api + "login.php";
     this.session.ajax(url, {
       username: this.username,
       password: this.password
