@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'project-add', loadChildren: './project-add/project-add.module#ProjectAddPageModule' },
-  { path: 'project-detail', loadChildren: './project-detail/project-detail.module#ProjectDetailPageModule' }
+  { path: 'project-detail/:id', loadChildren: './project-detail/project-detail.module#ProjectDetailPageModule' }
 ];
 @NgModule({
   imports: [
@@ -16,4 +16,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
