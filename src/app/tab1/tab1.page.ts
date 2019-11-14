@@ -3,6 +3,8 @@ import { ActionSheetController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from '../session/session.service';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -17,7 +19,9 @@ export class Tab1Page {
     public alertController: AlertController,
     private storage: Storage,
     private http: HttpClient,
-    private session: SessionService
+    private session: SessionService,
+    private camera: Camera,
+    private barcodeScanner: BarcodeScanner
   ) { }
   set() {
     //alert("Set");
@@ -106,5 +110,27 @@ export class Tab1Page {
   }
   showToast() {
     this.session.showToast('ok 222', 5000);
+  }
+  openCamera() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
+  }
+  scanBarcode() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+    }).catch(err => {
+      console.log('Error', err);
+    });
   }
 }
