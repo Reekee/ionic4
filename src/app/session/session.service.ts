@@ -51,7 +51,7 @@ export class SessionService {
       }, 200);
     });
   }
-  public linkTo(page, type = false) { // type=false ไม่จำ/ true=จำ
+  public linkTo(page, type = true) { // type=>false=ไม่จำประวัติหน้าก่อนหน้า / true=จำประวัติหน้าก่อนหน้า
     if (type == false) {
       this.router.navigateByUrl(page, { replaceUrl: true }); // ไม่จำประวัติหน้าก่อนหน้า
     } else {
@@ -127,7 +127,7 @@ export class SessionService {
     });
     toast.present();
   }
-  back() {
+  public back() {
     this.nav.pop();
   }
 }
