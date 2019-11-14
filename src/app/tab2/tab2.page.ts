@@ -57,4 +57,7 @@ export class Tab2Page {
   view(item) {
     this.session.linkTo('/project-detail/' + item.project_id);
   }
+  edit(item) {
+    this.session.linkTo('/project-edit/' + item.project_id);
+  }
 }
